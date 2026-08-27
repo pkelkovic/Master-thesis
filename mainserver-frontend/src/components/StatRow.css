@@ -1,0 +1,63 @@
+.stat-row {
+  background: #fff;
+  border: 0.5px solid rgba(0,0,0,0.10);
+  border-radius: 8px;
+  padding: 0.85rem 1.25rem;
+  margin-bottom: 8px;
+  transition: border-color 0.15s;
+}
+
+.stat-row:hover {
+  border-color: rgba(0,0,0,0.22);
+}
+
+.stat-row__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.stat-row__sensor-id {
+  font-size: 11px;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  color: #888780;
+}
+
+.stat-row__timeframe {
+  font-size: 11px;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  color: #5f5e5a;
+}
+
+.stat-row__metrics {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+}
+
+.metric {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.metric__label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: #b4b2a9;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+.metric__value {
+  font-size: 14px;
+  font-weight: 500;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  color: #1a1a1a;
+}
+
+.metric__value--avg { color: #185fa5; }
+.metric__value--std { color: #3b6d11; }
+.metric__value--min { color: #3c3489; }
+.metric__value--max { color: #993c1d; }

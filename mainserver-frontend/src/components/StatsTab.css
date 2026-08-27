@@ -1,0 +1,58 @@
+.tab-empty {
+  font-size: 13px;
+  color: #888780;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  padding: 1rem 0;
+}
+
+.stats-tab__type-tabs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 1.25rem;
+  padding-bottom: 8px;
+  border-bottom: 0.5px solid rgba(0,0,0,0.10);
+}
+
+.stats-tab__type-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  color: #888780;
+  background: #fff;
+  border: 0.5px solid rgba(0,0,0,0.12);
+  border-radius: 8px;
+  padding: 6px 12px;
+  cursor: pointer;
+  text-transform: lowercase;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+
+.stats-tab__type-tab:hover {
+  color: #1a1a1a;
+  border-color: rgba(0,0,0,0.28);
+}
+
+.stats-tab__type-tab--active {
+  color: #1a1a1a;
+  background: #f5f4f0;
+  border-color: rgba(0,0,0,0.35);
+}
+
+.stats-tab__type-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  color: #fff;
+  background: #5f5e5a;
+  border-radius: 999px;
+  min-width: 18px;
+  padding: 1px 6px;
+}
+
+.stats-tab__type-tab--active .stats-tab__type-count {
+  background: #1a1a1a;
+}

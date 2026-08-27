@@ -1,0 +1,92 @@
+.sensor-card {
+  background: #fff;
+  border: 0.5px solid rgba(0,0,0,0.12);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.sensor-card--clickable { cursor: pointer; }
+
+/* Status-based card colors */
+.sensor-card--active      { background: #f6fdf0; border-color: #b6dfa0e3; }
+.sensor-card--active:hover { border-color: #7eba65; }
+
+.sensor-card--warning      { background: #fffbf0; border-color: #e60dd086; }
+.sensor-card--warning:hover { border-color: #a02577; }
+
+.sensor-card--needs-check      { background: #f0f4ff; border-color: #fda400b6; }
+.sensor-card--needs-check:hover { border-color: #d4920d; }
+
+.sensor-card--not-active      { background: #fff7f6; border-color: #fd7d5ac1; opacity: 0.85; }
+.sensor-card--not-active:hover { border-color: #ff2c02; }
+
+/* Top row */
+.sensor-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+/* Status indicator */
+.sensor-card__status {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+.status--active      { color: #3b6d11; }
+.status--warning     { color: #8a6800; }
+.status--needs-check { color: #1a4fa0; }
+.status--not-active  { color: #993c1d; }
+
+.sensor-card__status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+
+.status--active .sensor-card__status-dot      { background: #3b6d11; animation: pulse-green 2s infinite; }
+.status--warning .sensor-card__status-dot     { background: #c49a00; animation: pulse-yellow 1.5s infinite; }
+.status--needs-check .sensor-card__status-dot { background: #1a4fa0; }
+.status--not-active .sensor-card__status-dot  { background: #993c1d; }
+
+@keyframes pulse-green  { 0%,100%{opacity:1} 50%{opacity:0.4} }
+@keyframes pulse-yellow { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+/* ID */
+.sensor-card__id {
+  font-size: 10px;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  color: #888780;
+  word-break: break-all;
+  margin-bottom: 6px;
+}
+
+/* Model */
+.sensor-card__model {
+  font-size: 15px;
+  font-weight: 500;
+  color: #1a1a1a;
+}
+
+/* Location */
+.sensor-card__location {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  color: #5f5e5a;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 0.5px solid rgba(0,0,0,0.08);
+}
+
+.location__icon { font-size: 14px; color: #888780; }
+.location__sep  { color: #b4b2a9; }
+.sensor-card__location strong { color: #1a1a1a; font-weight: 500; }

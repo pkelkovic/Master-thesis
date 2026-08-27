@@ -1,0 +1,72 @@
+.errors-tab__header {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 1.25rem;
+}
+
+.errors-tab__title {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #5f5e5a;
+}
+
+.errors-tab__count {
+  font-size: 11px;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  color: #b4b2a9;
+}
+
+.errors-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.error-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: #fff8f6;
+  border: 0.5px solid #f0c4b8;
+  border-left: 3px solid #993c1d;
+  border-radius: 8px;
+  padding: 0.85rem 1.25rem;
+  transition: border-color 0.15s;
+}
+
+.error-item:hover {
+  border-left-color: #c04a22;
+  background: #fff3f0;
+}
+
+.error-item__index {
+  font-size: 10px;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  color: #b4b2a9;
+  min-width: 36px;
+  padding-top: 1px;
+}
+
+.error-item__icon {
+  font-size: 13px;
+  color: #993c1d;
+  padding-top: 1px;
+}
+
+.error-item__message {
+  font-size: 13px;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  color: #3a1a10;
+  line-height: 1.5;
+  word-break: break-word;
+}
+
+.tab-empty {
+  font-size: 13px;
+  color: #888780;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  padding: 1rem 0;
+}

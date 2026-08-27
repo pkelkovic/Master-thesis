@@ -1,0 +1,234 @@
+.sensor-detail__back {
+  font-size: 12px;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  color: #888780;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 1.5rem;
+  transition: color 0.15s;
+}
+
+.sensor-detail__back:hover {
+  color: #1a1a1a;
+}
+
+.sensor-detail__layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+/* LEFT PANEL */
+.sensor-detail__info {
+  background: #fff;
+  border: 0.5px solid rgba(0,0,0,0.12);
+  border-radius: 12px;
+  padding: 1.25rem;
+  position: sticky;
+  top: 1rem;
+}
+
+.sensor-detail__info-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.sensor-detail__status {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-weight: 500;
+}
+
+.status--active { color: #3b6d11; }
+.status--unavailable { color: #993c1d; }
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+
+.status--active .status-dot {
+  background: #3b6d11;
+  animation: pulse-green 2s infinite;
+}
+
+.status--unavailable .status-dot {
+  background: #993c1d;
+}
+
+@keyframes pulse-green {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.sensor-detail__model {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 1.25rem;
+}
+
+.sensor-detail__fields {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 1.25rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 0.5px solid rgba(0,0,0,0.08);
+}
+
+.detail-field {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.detail-field__label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: #b4b2a9;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+.detail-field__value {
+  font-size: 13px;
+  color: #1a1a1a;
+  font-weight: 500;
+}
+
+.detail-field__value--mono {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 11px;
+  word-break: break-all;
+  font-weight: 400;
+  color: #5f5e5a;
+}
+
+.sensor-detail__stats-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stats-summary__label {
+  font-size: 11px;
+  color: #888780;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.stats-summary__value {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1a1a1a;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+/* RIGHT PANEL */
+.sensor-detail__stats-header {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 1rem;
+}
+
+.sensor-detail__stats-title {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #5f5e5a;
+  font-weight: 500;
+}
+
+.sensor-detail__stats-count {
+  font-size: 11px;
+  color: #b4b2a9;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+.sensor-detail__empty {
+  font-size: 13px;
+  color: #888780;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+/* Stats list */
+.stats-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.stats-list__item {
+  background: #fff;
+  border: 0.5px solid rgba(0,0,0,0.10);
+  border-radius: 8px;
+  padding: 0.85rem 1.25rem;
+  transition: border-color 0.15s;
+}
+
+.stats-list__item:hover {
+  border-color: rgba(0,0,0,0.22);
+}
+
+.stats-list__item-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.stats-list__index {
+  font-size: 10px;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  color: #b4b2a9;
+}
+
+.stats-list__timeframe {
+  font-size: 11px;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  color: #5f5e5a;
+}
+
+.stats-list__metrics {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+}
+
+.metric {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.metric__label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: #b4b2a9;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+.metric__value {
+  font-size: 14px;
+  font-weight: 500;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  color: #1a1a1a;
+}
+
+.metric__value--avg { color: #185fa5; }
+.metric__value--std { color: #3b6d11; }
+.metric__value--min { color: #3c3489; }
+.metric__value--max { color: #993c1d; }

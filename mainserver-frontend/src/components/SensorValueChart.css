@@ -1,0 +1,62 @@
+.sensor-chart {
+  background: #fff;
+  border: 0.5px solid rgba(0,0,0,0.12);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.sensor-chart__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.sensor-chart__title {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #5f5e5a;
+  margin-bottom: 4px;
+}
+
+.sensor-chart__subtitle {
+  font-size: 11px;
+  color: #b4b2a9;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+.sensor-chart__toggle {
+  flex-shrink: 0;
+  font-size: 11px;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  color: #5f5e5a;
+  background: #f5f4f0;
+  border: 0.5px solid rgba(0,0,0,0.15);
+  border-radius: 8px;
+  padding: 5px 12px;
+  cursor: pointer;
+}
+
+.sensor-chart__toggle:hover {
+  color: #1a1a1a;
+  border-color: rgba(0,0,0,0.3);
+}
+
+.sensor-chart__body {
+  width: 100%;
+  height: 220px;
+}
+
+.sensor-chart--expanded .sensor-chart__body {
+  height: 420px;
+}
+
+.sensor-chart--empty {
+  font-size: 13px;
+  color: #888780;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+}
