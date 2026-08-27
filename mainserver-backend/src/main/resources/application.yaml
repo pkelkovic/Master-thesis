@@ -1,0 +1,28 @@
+KAFKA_TOPIC_PATTERN: "sensor.*"
+KAFKA_STATS_TOPIC: "sensor.stats"
+KAFKA_SENSOR_TOPIC: "sensor.info"
+server:
+  port: 9000
+
+spring:
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:mydb}
+    username: ${DB_USERNAME:user}
+    password: ${DB_PASSWORD:pass}
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    
+  kafka:
+    bootstrap-server: ${KAFKA_HOST:localhost}:${KAFKA_PORT:9092}
+
+logging:
+  level:
+    root: INFO
+    org.hibernate.SQL: OFF
+    org.hibernate.orm.jdbc.bind: OFF
+  pattern:
+    console: "%d{HH:mm:ss} %-5level %msg%n"
+
+app:
+  kafka-topics: ${KAFKA_TOPICS:sensor.stats.*,sensor.info}
