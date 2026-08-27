@@ -1,0 +1,34 @@
+server:
+  port: 8082
+
+spring:
+  h2:
+    console:
+      enabled: true
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driverClassName: org.h2.Driver
+    username: user
+    password: user
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+logging:
+  level:
+    root: INFO
+    org.hibernate.SQL: OFF
+    org.hibernate.orm.jdbc.bind: OFF
+  pattern:
+    console: "%d{HH:mm:ss} %-5level %msg%n"
+
+MQTT_BROKER_URI: "tcp://127.0.0.1:1883"
+MQTT_INFO_TOPIC: "sensor/information/#"
+MQTT_SENSOR_TOPIC: "sensor/data/#"
