@@ -1,0 +1,12 @@
+server:
+  port: 8086
+
+logging:
+  pattern:
+    console: "%d{HH:mm:ss} %-5level %msg%n"
+
+MQTT_BROKERS: "tcp://127.0.0.1:1883"
+SENSOR_TYPE_ID: "0"
+
+MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE: "prometheus,health"
+MANAGEMENT_ENDPOINT_PROMETHEUS_ENABLED: "true"
