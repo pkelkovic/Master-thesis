@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mainserver
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mainserver
+  template:
+    metadata:
+      labels:
+        app: mainserver
+    spec:
+      containers:
+        - name: mainserver
+          image: petrakelkovic/mainserver-jib:05
+          ports:
+            - containerPort: 9000
+          envFrom:
+            - configMapRef:
+                name: mainserver-config
+            - secretRef:
+                name: mainserver-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mainserver-service
+spec:
+  type: ClusterIP
+  selector:
+    app: mainserver
+  ports:
+    - protocol: TCP
+      port: 9000
+      targetPort: 9000

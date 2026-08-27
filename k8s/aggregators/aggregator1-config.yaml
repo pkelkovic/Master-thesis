@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: aggregator1-config
+data:
+  SPRING_APPLICATION_NAME: "AggregatorMicroservice-1"
+  SERVER_PORT: "8091"
+  
+  MQTT_BROKER_URI: "tcp://mosquitto-1.mosquitto:1883"

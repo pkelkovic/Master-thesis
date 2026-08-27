@@ -1,0 +1,81 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prometheus-config
+data:
+  prometheus.yml: |
+    # my global config
+    global:
+      scrape_interval: 15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
+      evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
+      # scrape_timeout is set to the global default (10s).
+
+    # Alertmanager configuration
+    alerting:
+      alertmanagers:
+        - static_configs:
+            - targets:
+              # - alertmanager:9093
+
+    # Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
+    rule_files:
+      # - "first_rules.yml"
+      # - "second_rules.yml"
+
+
+    scrape_configs:
+      - job_name: "sensors"
+        metrics_path: "/actuator/prometheus"
+        scheme: "http"
+
+        static_configs:
+          - targets: 
+                - "temperature-service:8081"
+                - "humidity-service:8082"
+                - "weight-service:8083"
+            labels:
+              app: "sensors"
+              
+      - job_name: "aggregators"
+        metrics_path: "/actuator/prometheus"
+        static_configs:
+          - targets:
+              - "aggregator0-service:8090"
+              - "aggregator1-service:8091"
+              - "aggregator2-service:8092"
+              - "aggregator3-service:8093"
+              - "aggregator4-service:8094"
+            labels:
+              app: "aggregators"
+
+      - job_name: "mainserver"
+        metrics_path: "/actuator/prometheus"
+        static_configs:
+          - targets:
+              - "mainserver-service:9000"
+            labels:
+              app: "mainserver"
+      - job_name: "mosquitto"                
+        metrics_path: "/metrics"
+        static_configs:
+          - targets:
+              - "mosquitto-0.mosquitto:9234"
+              - "mosquitto-1.mosquitto:9234"
+              - "mosquitto-2.mosquitto:9234"
+              - "mosquitto-3.mosquitto:9234"
+              - "mosquitto-4.mosquitto:9234"
+            labels:
+              app: "mosquitto"
+        relabel_configs:                     
+          - source_labels: [__address__]
+            regex: '(mosquitto-\d+)\..*'
+            target_label: instance
+            replacement: '$1'
+
+      - job_name: "kafka"                   
+        metrics_path: "/metrics"
+        static_configs:
+          - targets:
+              - "kafka-exporter:9308"
+            labels:
+              app: "kafka"

@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: weight-microservice-config
+data:
+  SPRING_APPLICATION_NAME: "WeightMicroservice"
+  SERVER_PORT: "8083"
+  PERIOD: "30000"
+
+  SENSOR_TYPE_ID: "2"
+
+  MQTT_BROKERS: "tcp://mosquitto-0.mosquitto:1883,tcp://mosquitto-1.mosquitto:1883,tcp://mosquitto-2.mosquitto:1883,tcp://mosquitto-3.mosquitto:1883,tcp://mosquitto-4.mosquitto:1883"
+  DEFAULT_BROKER: "tcp://mosquitto-1.mosquitto:1883"
+  MQTT_INFO_TOPIC: "sensor/information/"
+  MQTT_READINGS_TOPIC: "sensor/data/"
+
+  LOGGING_PATTERN_CONSOLE: "%d{HH:mm:ss} %-5level %msg%n"
+
+  MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE: "prometheus,health"
+  MANAGEMENT_ENDPOINT_PROMETHEUS_ENABLED: "true"

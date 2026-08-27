@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: humidity-microservice
+  labels:
+    app: humidity-microservice
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: humidity-microservice
+  template:
+    metadata:
+      labels:
+        app: humidity-microservice
+    spec:
+      containers:
+      - name: humidity-microservice
+        image: petrakelkovic/sensor-microservice:06
+        ports:
+        - containerPort: 8082
+        envFrom:
+          - configMapRef:
+              name: humidity-microservice-config
+        env:
+          - name: MQTT_CLIENT_ID
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: humidity-service
+spec:
+  type: ClusterIP
+  selector:
+    app: humidity-microservice
+  ports:
+    - protocol: TCP
+      port: 8082
+      targetPort: 8082

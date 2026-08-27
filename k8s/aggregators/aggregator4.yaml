@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aggregator4
+  labels:
+    app: aggregator4
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: aggregator4
+  template:
+    metadata:
+      labels:
+        app: aggregator4
+    spec:
+      containers:
+      - name: aggregator4
+        image: petrakelkovic/aggregator-jib:05
+        ports:
+        - containerPort: 8094
+        envFrom:
+          - configMapRef:
+              name: aggregator4-config
+          - configMapRef:
+              name: aggregator-config
+          - secretRef:
+              name: aggregator-secret
+        env:
+          - name: MQTT_CLIENT_ID
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: aggregator4-service
+spec:
+  type: ClusterIP
+  selector:
+    app: aggregator4
+  ports:
+    - protocol: TCP
+      port: 8094
+      targetPort: 8094

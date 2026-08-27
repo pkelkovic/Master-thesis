@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aggregator0
+  labels:
+    app: aggregator0
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: aggregator0
+  template:
+    metadata:
+      labels:
+        app: aggregator0
+    spec:
+      containers:
+      - name: aggregator0
+        image: petrakelkovic/aggregator-jib:05
+        ports:
+        - containerPort: 8090
+        envFrom:
+          - configMapRef:
+              name: aggregator0-config
+          - configMapRef:
+              name: aggregator-config
+          - secretRef:
+              name: aggregator-secret
+        env:
+          - name: MQTT_CLIENT_ID
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: aggregator0-service
+spec:
+  type: ClusterIP
+  selector:
+    app: aggregator0
+  ports:
+    - protocol: TCP
+      port: 8090
+      targetPort: 8090

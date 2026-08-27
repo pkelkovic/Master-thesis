@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mosquitto
+  labels:
+    app: mosquitto
+spec:
+  selector:
+    matchLabels:
+      app: mosquitto
+  serviceName: mosquitto
+  replicas: 5
+  minReadySeconds: 10
+  template:
+    metadata:
+      labels:
+        app: mosquitto
+      annotations:                     
+        prometheus.io/scrape: "true"   
+        prometheus.io/port: "9234"     
+        prometheus.io/path: "/metrics" 
+    spec:
+      containers:
+        - name: mosquitto
+          image: eclipse-mosquitto:2.0.21
+          ports:
+            - containerPort: 1883
+          volumeMounts:
+            - name: config-volume
+              mountPath: /mosquitto/config
+            - name: data-volume
+              mountPath: /mosquitto/data
+        - name: mosquitto-exporter        
+          image: sapcc/mosquitto-exporter
+          args:
+            - "--endpoint=tcp://localhost:1883"
+          ports:
+            - containerPort: 9234
+              name: metrics
+      volumes:
+        - name: config-volume
+          configMap:
+            name: mosquitto-config
+        - name: data-volume
+          emptyDir: {}
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mosquitto
+spec:
+  clusterIP: None
+  selector:
+    app: mosquitto
+  ports:
+    - protocol: TCP
+      name: broker
+      port: 1883
+      targetPort: 1883
+    - protocol: TCP        
+      name: metrics         
+      port: 9234             
+      targetPort: 9234        

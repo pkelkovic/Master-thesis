@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mainserver-config
+data:
+  SERVER_PORT: "9000"
+
+  DB_HOST: "database-service"
+  DB_PORT: "5432"
+  DB_NAME: "mydb"
+
+  SPRING_DATASOURCE_URL: "jdbc:postgresql://database-service:5432/mydb"
+  SPRING_JPA_HIBERNATE_DDL_AUTO: "update"
+  SPRING_KAFKA_CONSUMER_GROUP_ID: "backend-service"
+
+  KAFKA_BOOTSTRAP_SERVER: "kafka-service:9092"
+
+  KAFKA_HOST: "kafka-service"
+  KAFKA_PORT: "9092"
+  KAFKA_TOPIC_PATTERN: "sensor.*"
+  KAFKA_STATS_TOPIC: "sensor.stats"
+  KAFKA_SENSOR_TOPIC: "sensor.info"
+  KAFKA_ERROR_TOPIC: "sensor.error"
+
+  LOGGING_LEVEL_ROOT: "INFO"
+  LOGGING_LEVEL_ORG_HIBERNATE_SQL: "OFF"
+  LOGGING_LEVEL_ORG_HIBERNATE_ORM_JDBC_BIND: "OFF"
+  LOGGING_PATTERN_CONSOLE: "%d{HH:mm:ss} %-5level %msg%n"
+
+  MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE: "prometheus,health"
+  MANAGEMENT_ENDPOINT_PROMETHEUS_ENABLED: "true"
+
+  MANAGEMENT_METRICS_DISTRIBUTION_PERCENTILES_HTTP_SERVER_REQUESTS: "0.5,0.95"

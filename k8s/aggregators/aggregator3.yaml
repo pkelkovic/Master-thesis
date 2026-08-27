@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aggregator3
+  labels:
+    app: aggregator3
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: aggregator3
+  template:
+    metadata:
+      labels:
+        app: aggregator3
+    spec:
+      containers:
+      - name: aggregator3
+        image: petrakelkovic/aggregator-jib:05
+        ports:
+        - containerPort: 8093
+        envFrom:
+          - configMapRef:
+              name: aggregator3-config
+          - configMapRef:
+              name: aggregator-config
+          - secretRef:
+              name: aggregator-secret
+        env:
+          - name: MQTT_CLIENT_ID
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: aggregator3-service
+spec:
+  type: ClusterIP
+  selector:
+    app: aggregator3
+  ports:
+    - protocol: TCP
+      port: 8093
+      targetPort: 8093

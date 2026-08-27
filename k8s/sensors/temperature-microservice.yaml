@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: temperature-microservice
+  labels:
+    app: temperature-microservice
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: temperature-microservice
+  template:
+    metadata:
+      labels:
+        app: temperature-microservice
+    spec:
+      containers:
+      - name: temperature-microservice
+        image: petrakelkovic/sensor-microservice:06
+        ports:
+        - containerPort: 8081
+        envFrom:
+          - configMapRef:
+              name: temperature-microservice-config
+        env:
+          - name: MQTT_CLIENT_ID
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: temperature-service
+spec:
+  type: ClusterIP
+  selector:
+    app: temperature-microservice
+  ports:
+    - protocol: TCP
+      port: 8081
+      targetPort: 8081

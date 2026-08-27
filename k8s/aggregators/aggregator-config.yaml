@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: aggregator-config
+data:
+  MQTT_SENSOR_TOPIC: "sensor/data/#"
+  MQTT_INFO_TOPIC: "sensor/information/#"
+  
+  PERIOD: "60000"
+
+  SPRING_H2_CONSOLE_ENABLED: "true"
+
+  SPRING_DATASOURCE_URL: "jdbc:h2:mem:database"
+  SPRING_DATASOURCE_DRIVER_CLASS_NAME: "org.h2.Driver"
+
+  SPRING_JPA_HIBERNATE_DDL_AUTO: "update"
+  SPRING_JPA_SHOW_SQL: "false"
+
+  SPRING_KAFKA_BOOTSTRAP_SERVERS: "kafka-service:9092"
+  SPRING_KAFKA_PRODUCER_KEY_SERIALIZER: "org.apache.kafka.common.serialization.StringSerializer"
+  SPRING_KAFKA_PRODUCER_VALUE_SERIALIZER: "org.apache.kafka.common.serialization.StringSerializer"
+  KAFKA_STATS_TOPIC: "sensor.stats."
+  KAFKA_SENSOR_TOPIC: "sensor.info"
+  KAFKA_ERROR_TOPIC: "sensor.error."
+  KAFKA_STATUS_TOPIC: "sensor.status."
+
+  NO_ACTION_THRESHOLD: "5"
+
+  LOGGING_LEVEL_ROOT: "INFO"
+  LOGGING_LEVEL_ORG_HIBERNATE_SQL: "OFF"
+  LOGGING_LEVEL_ORG_HIBERNATE_ORM_JDBC_BIND: "OFF"
+  LOGGING_PATTERN_CONSOLE: "%d{HH:mm:ss} %-5level %msg%n"
+
+  MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE: "prometheus,health"
+  MANAGEMENT_ENDPOINT_PROMETHEUS_ENABLED: "true"

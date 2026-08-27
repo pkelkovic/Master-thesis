@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: weight-microservice
+  labels:
+    app: weight-microservice
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: weight-microservice
+  template:
+    metadata:
+      labels:
+        app: weight-microservice
+    spec:
+      containers:
+      - name: weight-microservice
+        image: petrakelkovic/sensor-microservice:06
+        ports:
+        - containerPort: 8083
+        envFrom:
+          - configMapRef:
+              name: weight-microservice-config
+        env:
+          - name: MQTT_CLIENT_ID
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: weight-service
+spec:
+  type: ClusterIP
+  selector:
+    app: weight-microservice
+  ports:
+    - protocol: TCP
+      port: 8083
+      targetPort: 8083
