@@ -1,5 +1,6 @@
 # Master thesis
-This repository contains five directories with source code for my master's thesis "Event-Driven Smart Warehouse Architecture"
+This repository contains five directories with source code for my master's thesis "Event-Driven Smart Warehouse Architecture".
+
 There are four applications:
 - sensor application - simulates the sensor's work and sends sensor readings to the MQTT broker
 - aggregator application - collects sensors' data through MQTT, does basic data processing, and sends the gathered statistics to the main server through the Kafka broker
