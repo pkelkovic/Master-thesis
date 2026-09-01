@@ -91,7 +91,7 @@ export function useSensors() {
       if (USE_MOCK) {
         const withStatuses = await attachStatusesToSensors(
           MOCK_SENSORS,
-          async (sensorId) => MOCK_SENSOR_STATUSES[sensorId] ?? 'NOT_ACTIVE'
+          async (sensorId) => MOCK_SENSOR_STATUSES[sensorId] || 'ACTIVE'
         );
 
         setKnownSensors(withStatuses);
@@ -110,7 +110,7 @@ export function useSensors() {
             console.warn(`Failed to fetch status for sensor ${sensor.sensorID}`, err);
             status = null;
           }
-          status = status ?? 'ACTIVE'; // default to ACTIVE instead of falling through to NOT_ACTIVE
+          status = status || 'ACTIVE'; 
 
           return {
             ...sensor,
