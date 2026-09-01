@@ -35,5 +35,5 @@ export async function fetchSensorStatus(sensorId) {
   if (!res.ok) throw new Error(`Failed to fetch status for ${sensorId}: ${res.status}`);
 
   const parsed = await safeJson(res, null);
-  return parsed ?? 'ACTIVE';
+  return parsed || 'ACTIVE';
 }
